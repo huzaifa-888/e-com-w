@@ -1,151 +1,61 @@
 'use client';
-import { useState } from "react";
-import { motion } from "framer-motion";
 
-const projects = [
-  {
-    id: 1,
-    title: "Mobile App 1",
-    image: "/images/App.jpg",
-    description: "A task manager with reminders, local DB and sync.",
-    video: "https://youtube.com/shorts/s1cPZ9GIxjM?si=syjveFvbzmabf3iv",
-    link: "/projects/mobile-app-1",
-  },
-  {
-    id: 2,
-    title: "Mobile App 2",
-    image: "/images/aa.jpg",
-    description: "A productivity app with YouTube demo link.",
-    video: "https://youtube.com/shorts/D558TdNEfX8?si=ULWLv8HrIrmuKPj4",
-    link: "/projects/mobile-app-2",
-  },
-  {
-    id: 3,
-    title: "Website",
-    image: "/images/ww.jpg",
-    description: "Responsive marketing site with CMS integration.",
-    video: "/videos/web.mp4",
-    link: "/projects/website",
-  },
-  {
-    id: 4,
-    title: "Desktop Application",
-    image: "/images/desk.jpg",
-    description: "Electron-based inventory manager with barcode scanning.",
-    video: "https://youtu.be/rKAReNowzZ4?si=LoMkM3KaQ8hJ5dQw",
-    link: "/projects/desktop-app",
-  },
-  {
-    id: 5,
-    title: "Hand Gesture Detection (AI)",
-    image: "/images/main.png",
-    description: "Real-time gesture recognition using a trained ML model.",
-    video: "https://youtu.be/YwE4Rg6QSzg?si=RQaef3-ThjYehZU5",
-    link: "/projects/hand-gesture-ai",
-  },
-  {
-    id: 6,
-    title: "E-Commerce Store",
-    image: "/images/web.jpg",
-    description: "Full-stack online store with cart, checkout & payments.",
-    video: "/videos/ecommerce.mp4",
-    link: "/projects/ecommerce",
-  },
-  {
-    id: 8,
-    title: "Video Editing Project",
-    image: "/images/ve.jpg",
-    description: "Cinematic edits, motion graphics & storytelling.",
-    video: "/videos/editing.mp4",
-    link: "/projects/video-editing",
-  },
+import { useState } from 'react';
+import Link from 'next/link';
+
+const deals = [
+  { id: 3, title: 'JEWELLERY SET', subtitle: 'Necklace + Earrings Combo', originalPrice: 3000, salePrice: 1999, saving: 1001, discount: 33, emoji: '💎', tag: 'HOT DEAL', href: '/jewellery', color: '#ad1457', dark: '#560a2b', image: '/images/jew.png', expires: '3d 0h', sold: 43 },
+  { id: 4, title: 'HAIR PACK', subtitle: '10-Piece Accessories Set', originalPrice: 2500, salePrice: 1499, saving: 1001, discount: 40, emoji: '🎀', tag: 'FAN FAVORITE', href: '/hair-accessories', color: '#d81b60', dark: '#7b0d37', image: '/images/pp.jpg', expires: '5d 12h', sold: 129 },
+  { id: 5, title: 'NAIL KIT', subtitle: 'Polish + Tools + Stickers', originalPrice: 2000, salePrice: 1199, saving: 801, discount: 40, emoji: '💅', tag: 'TOP PICK', href: '/nails', color: '#880e4f', dark: '#3d0726', image: '/images/uu.jpg', expires: '4d 8h', sold: 55 },
+  { id: 6, title: 'SELF-CARE BUNDLE', subtitle: '5 Premium Essentials', originalPrice: 6000, salePrice: 3999, saving: 2001, discount: 33, emoji: '✨', tag: 'NEW ARRIVAL', href: '/self-care', color: '#e91e8c', dark: '#7a0847', image: '/images/dd.jpg', expires: '6d 22h', sold: 31 },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.15, duration: 0.6, ease: "easeOut" },
-  }),
-};
-
-export default function ProjectsPage() {
-  const [activeVideo, setActiveVideo] = useState(null);
-
-  const handleWatchVideo = (videoUrl) => {
-    if (videoUrl.includes("youtube") || videoUrl.includes("youtu.be")) {
-      window.open(videoUrl, "_blank");
-    } else {
-      setActiveVideo(videoUrl);
-    }
-  };
+function DealCard({ deal, index }) {
+  const [hov, setHov] = useState(false);
+  const isFeatured = index === 0;
 
   return (
-    <main className="min-h-screen bg-[#0f0f0f] text-white py-16 px-6">
-      <h1 className="text-4xl md:text-5xl font-bold text-center text-pink-500 mb-12">
-        My Projects
-      </h1>
-
-      <div className="flex flex-wrap justify-center gap-8 px-4">
-        {projects.map((project, index) => (
-          <motion.div
-            key={project.id}
-            className="bg-[#1a1a1a] rounded-xl p-5 shadow-md hover:shadow-pink-500 transition cursor-pointer flex flex-col items-center text-center w-full sm:w-60"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            custom={index}
-            variants={cardVariants}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-24 h-24 mb-4 rounded-full border-2 border-pink-600 object-cover"
-            />
-            <h3 className="text-lg font-bold text-pink-500">{project.title}</h3>
-            <p className="text-gray-400 mt-2 text-sm">{project.description}</p>
-
-            <div className="mt-4 flex gap-2">
-              <button
-                onClick={() => handleWatchVideo(project.video)}
-                className="bg-pink-600 text-white px-3 py-1 rounded text-sm hover:bg-pink-700 transition"
-              >
-                🎥 Watch Video
-              </button>
-              <a
-                href={project.link}
-                className="bg-gray-700 text-white px-3 py-1 rounded text-sm hover:bg-gray-600 transition"
-              >
-                📖 Read More
-              </a>
-            </div>
-          </motion.div>
-        ))}
+    <div
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{
+        background: '#fff', borderRadius: '16px', overflow: 'hidden',
+        border: `1px solid ${hov ? deal.color + '55' : '#f0d0de'}`,
+        boxShadow: hov ? `0 20px 48px ${deal.color}25` : '0 2px 12px rgba(233,30,140,0.08)',
+        transition: 'all 0.3s ease',
+        transform: hov ? 'translateY(-6px)' : 'translateY(0)',
+        display: 'flex', flexDirection: 'column',
+        gridColumn: isFeatured ? 'span 2' : 'span 1',
+      }}
+      className={isFeatured ? 'featured-card' : ''}
+    >
+      <div style={{ position: 'relative', height: isFeatured ? '260px' : '200px', overflow: 'hidden', background: `linear-gradient(135deg, ${deal.color}22, ${deal.dark}18)` }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={deal.image} alt={deal.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s', transform: hov ? 'scale(1.07)' : 'scale(1)' }} onError={e => { e.target.style.display = 'none'; }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,2,10,0.65) 0%, rgba(20,2,10,0.1) 55%)' }} />
       </div>
 
-      {/* Only for local mp4 videos */}
-      {activeVideo && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-          <div className="relative w-full max-w-3xl bg-black rounded-lg overflow-hidden">
-            <button
-              onClick={() => setActiveVideo(null)}
-              className="absolute top-2 right-2 text-white text-2xl"
-            >
-              ✕
-            </button>
-            <div className="relative pb-[56.25%] h-0">
-              <video
-                src={activeVideo}
-                controls
-                className="absolute top-0 left-0 w-full h-full"
-              ></video>
-            </div>
-          </div>
-        </div>
-      )}
-    </main>
+      <div style={{ padding: '18px 20px 20px' }}>
+        <h3>{deal.title}</h3>
+        <p>{deal.subtitle}</p>
+        <p>Rs {deal.salePrice}</p>
+      </div>
+    </div>
+  );
+}
+
+export default function DealsPage() {
+  return (
+    <div>
+      <h1>
+        TODAY&apos;S DEALS
+      </h1>
+
+      <div className="deals-grid">
+        {deals.map((deal, i) => (
+          <DealCard key={deal.id} deal={deal} index={i} />
+        ))}
+      </div>
+    </div>
   );
 }
