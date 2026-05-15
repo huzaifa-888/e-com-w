@@ -112,7 +112,7 @@ export default function HomePage() {
                 textTransform: "uppercase",
                 cursor: "pointer", transition: "all 0.2s",
               }}>
-                Today's Deals 🔥
+                Today&apos;s Deals 🔥
               </span>
             </Link>
           </div>

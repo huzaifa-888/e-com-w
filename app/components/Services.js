@@ -191,10 +191,42 @@ export default function ServicesPage() {
         {/* Bottom CTA */}
         <div style={{ marginTop: '48px', background: 'linear-gradient(135deg, #fff0f5, #ffe0ef)', border: '1px solid #f7b3d0', borderRadius: '16px', padding: '36px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px' }}>
           <div>
-            <p style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '4px', color: '#e91e8c', textTransform: 'uppercase', marginBottom: '8px' }}>Today's Special</p>
-            <h3 style={{ fontSize: '24px', fontWeight: 900, color: '#2a0a16', letterSpacing: '-0.5px', margin: 0 }}>Don't Miss Our Flash Deals 🔥</h3>
-            <p style={{ fontSize: '13px', color: '#7a3050', margin: '6px 0 0', fontWeight: 400 }}>Save up to 40% on bundles and curated sets</p>
-          </div>
+  <p
+    style={{
+      fontSize: '10px',
+      fontWeight: 700,
+      letterSpacing: '4px',
+      color: '#e91e8c',
+      textTransform: 'uppercase',
+      marginBottom: '8px',
+    }}
+  >
+    Today&apos;s Special
+  </p>
+
+  <h3
+    style={{
+      fontSize: '24px',
+      fontWeight: 900,
+      color: '#2a0a16',
+      letterSpacing: '-0.5px',
+      margin: 0,
+    }}
+  >
+    Don&apos;t Miss Our Flash Deals 🔥
+  </h3>
+
+  <p
+    style={{
+      fontSize: '13px',
+      color: '#7a3050',
+      margin: '6px 0 0',
+      fontWeight: 400,
+    }}
+  >
+    Save up to 40% on bundles and curated sets
+  </p>
+</div>
           <Link href="/deals" style={{ textDecoration: 'none' }}>
             <span style={{ display: 'inline-block', background: 'linear-gradient(135deg, #e91e8c, #c2185b)', color: '#fff', padding: '13px 32px', borderRadius: '10px', fontSize: '12px', fontWeight: 800, letterSpacing: '2px', textTransform: 'uppercase', boxShadow: '0 8px 24px rgba(233,30,140,0.3)' }}>
               Shop Deals →
